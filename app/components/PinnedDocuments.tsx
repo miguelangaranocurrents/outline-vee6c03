@@ -81,8 +81,10 @@ function PinnedDocuments({
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
+      // A hold must be well beyond a normal click before it turns into a drag,
+      // otherwise briefly held clicks on a pinned document are swallowed.
       activationConstraint: {
-        delay: 100,
+        delay: 400,
         tolerance: 5,
       },
     }),
